@@ -6,6 +6,7 @@
     <Bind></Bind>
     <Directive></Directive>
     <Computed></Computed>
+    <Watch></Watch>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import Axios from './components/axios.vue';
 import Bind from  './components/binding.vue';
 import Directive from './components/directive.vue';
 import Computed from './components/computed.vue';
+import Watch from './components/watch.vue';
 
 export default {
   components : {
@@ -24,7 +26,8 @@ export default {
     'Axios': Axios,
     'Bind': Bind,
     'Directive': Directive,
-    'Computed': Computed
+    'Computed': Computed,
+    'Watch': Watch
   }
   
 }
