@@ -23,7 +23,8 @@ export default {
       // 없는 내용 localStorage에 저장되지 않게 예외처리
       if(this.newTodoItem !== "") {
         var value = this.newTodoItem && this.newTodoItem.trim();
-        localStorage.setItem(value, value);
+        // localStorage.setItem(value, value);
+        this.$emit('addTodoo', value);
         this.clearInput();
       }
     },
