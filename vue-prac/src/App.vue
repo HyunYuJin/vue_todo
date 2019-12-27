@@ -7,6 +7,9 @@
     <Directive></Directive>
     <Computed></Computed>
     <Watch></Watch>
+    <hr>
+    <VonHandling></VonHandling>
+    <Conditional></Conditional>
   </div>
 </template>
 
@@ -18,6 +21,8 @@ import Bind from  './components/binding.vue';
 import Directive from './components/directive.vue';
 import Computed from './components/computed.vue';
 import Watch from './components/watch.vue';
+import VonHandling from './components/v-onHandling.vue';
+import Conditional from './components/conditional.vue';
 
 export default {
   components : {
@@ -27,7 +32,9 @@ export default {
     'Bind': Bind,
     'Directive': Directive,
     'Computed': Computed,
-    'Watch': Watch
+    'Watch': Watch,
+    'VonHandling': VonHandling,
+    'Conditional': Conditional
   }
   
 }
