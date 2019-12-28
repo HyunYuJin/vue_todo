@@ -5,13 +5,16 @@
         <i class="addBtn fas fa-plus" aria-hidden="true"></i>
       </span>
 
-      <modal v-if="showModal" @close="showModal = false">
-        <h3 slot="header">경고</h3>
-        <span slot="footer" @click="showModal = false">
-          할 일을 입력하세요.
-          <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
+      <Modal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">
+          경고
+          <i class="closeModalBtn fas fa-times" aria-hidden="true" @click="showModal = false"></i>
+        </h3>
+        <p slot="body">할일을 입력하세요.</p>
+        <span slot="footer">
+          copyright
         </span>
-      </modal>
+      </Modal>
   </div>
 </template>
 
