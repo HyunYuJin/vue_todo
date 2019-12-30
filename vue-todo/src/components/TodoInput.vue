@@ -4,17 +4,6 @@
       <span class="addContainer" v-on:click="addTodo">
         <i class="addBtn fas fa-plus" aria-hidden="true"></i>
       </span>
-
-      <Modal v-if="showModal" @close="showModal = false">
-        <h3 slot="header">
-          경고
-          <i class="closeModalBtn fas fa-times" aria-hidden="true" @click="showModal = false"></i>
-        </h3>
-        <p slot="body">할일을 입력하세요.</p>
-        <span slot="footer">
-          copyright
-        </span>
-      </Modal>
   </div>
 </template>
 
@@ -37,17 +26,10 @@ export default {
 
   methods: {
     addTodo() {
-      // console.log(this.newTodoItem);
-        // localStorage.setItem(this.newTodoItem, this.newTodoItem)
-
       // 없는 내용 localStorage에 저장되지 않게 예외처리
       if(this.newTodoItem !== "") {
-        var value = this.newTodoItem && this.newTodoItem.trim();
-        // localStorage.setItem(value, value);
-        this.$emit('addTodoo', value);
+        this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
-      } else {
-        this.showModal = !this.showModal;
       }
     },
 

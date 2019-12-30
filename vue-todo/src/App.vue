@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <todo-header></todo-header>
-    <todo-input v-on:addTodoo='addTodo'></todo-input>
-    <todo-list v-bind:propsdata='todoItems' @removeTodoo="removeTodo"></todo-list>
+    <todo-input v-on:addTodoItem='addOneItem'></todo-input>
+    <todo-list v-bind:propsdata='todoItems' v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem"></todo-list>
     <todo-footer v-on:removeAll='clearAll'></todo-footer>
   </div>
 </template>
@@ -30,27 +30,36 @@ export default {
   created() {
     if(localStorage.length > 0) {
       for(var i=0; i <= localStorage.length; i++) {
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
-          this.todoItems.push(localStorage.key(i));
+        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
         }
       }
     } 
   },
 
   methods: {
-    addTodo(todoItem) {
-      localStorage.setItem(todoItem, todoItem);
-      this.todoItems.push(todoItem);
+    addOneItem(todoItem) {
+      var obj = {completed: false, item: todoItem};
+      localStorage.setItem(todoItem, JSON.stringify(obj));
+      this.todoItems.push(obj);
     },
 
     clearAll() {
       localStorage.clear();
       this.todoItems = [];
+    }, 
+
+    removeOneItem(todoItem, index) {
+      localStorage.removeItem(todoItem.item);
+      this.todoItems.splice(index, 1);
     },
 
-    removeTodo(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+    toggleOneItem(todoItem, index) {
+      this.todoItems[index].completed = !this.todoItems[index].completed;
+
+      // localStorage의 데이터를 갱신
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   }
 }
