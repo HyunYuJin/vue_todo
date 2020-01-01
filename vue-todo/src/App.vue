@@ -3,7 +3,7 @@
     <todo-header></todo-header>
     <todo-input v-on:addTodoItem='addOneItem'></todo-input>
     <todo-list v-bind:propsdata='todoItems' v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem"></todo-list>
-    <todo-footer v-on:removeAll='clearAll'></todo-footer>
+    <todo-footer v-on:clearAll='clearAllItems'></todo-footer>
   </div>
 </template>
 
@@ -27,27 +27,12 @@ export default {
     }
   },
 
-  created() {
-    if(localStorage.length > 0) {
-      for(var i=0; i <= localStorage.length; i++) {
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-        }
-      }
-    } 
-  },
-
   methods: {
     addOneItem(todoItem) {
       var obj = {completed: false, item: todoItem};
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-
-    clearAll() {
-      localStorage.clear();
-      this.todoItems = [];
-    }, 
 
     removeOneItem(todoItem, index) {
       localStorage.removeItem(todoItem.item);
@@ -60,8 +45,23 @@ export default {
       // localStorage의 데이터를 갱신
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    }
-  }
+    },
+
+    clearAllItems() {
+      localStorage.clear();
+      this.todoItems = [];
+    }, 
+  },
+
+  created() {
+    if(localStorage.length > 0) {
+      for(var i=0; i <= localStorage.length; i++) {
+        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
+      }
+    } 
+  },
 }
 </script>
 
