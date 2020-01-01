@@ -4,6 +4,9 @@
       <span class="addContainer" v-on:click="addTodo">
         <i class="addBtn fas fa-plus" aria-hidden="true"></i>
       </span>
+      <Modal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">custom header</h3>
+      </Modal>
   </div>
 </template>
 
@@ -30,6 +33,8 @@ export default {
       if(this.newTodoItem !== "") {
         this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
+      } else {
+        this.showModal = true;
       }
     },
 
