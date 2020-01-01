@@ -17,7 +17,6 @@
     <li>결론적으로 index.html파일에서 웹팩으로 빌드한 build.js 파일만 로딩하면 애플리케이션 로직을 구성하는 vue 파일, png 파일, 자바스크립트 라이브러리를 로딩한 것과 동일한 방식으로 동작</li>
 </ol>
 
-
 <hr>
 
 **Vuex**
@@ -31,3 +30,16 @@
     <li>컴포넌트간 데이터 전달 명시</li>
     <li>여러개의 컴포넌트에서 같은 데이터를 업데이트 할 때 동기화 문제 </li>
 </ol>
+
+<ul>
+    <li>state: 여러 컴포넌트에 공유되는 데이터 data()</li>
+    <li>getters: 연산된 state 값을 접근하는 속성 computed</li>
+    <li>mutations: state 값을 변경하는 로직 / 메서드 methods</li>
+    <li>actions: 비동기 처리 로직을 선언하는 메서드 async methods</li>
+</ul>
+
+<h3>state는 왜 직접 변경하지 않고 mutation으로 변경하는가?</h3>
+<ul>
+    <li>여러개의 컴포넌트에서 state 값을 변경하는 경우, 어느 컴포넌트에서 해당 state를 변경했는지 추적하기 어렵다.</li>
+    <li>특정 시점에 어떤 컴포넌트가 state를 접근하여 변경한건지 확인이 어렵다.</li>
+</ul>
