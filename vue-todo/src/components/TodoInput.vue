@@ -17,6 +17,8 @@ export default {
   props: ['propsdata'],
 
   components: {
+    // 객체의 속성명과 값이 동일할 때 축약이 가능하다.
+    // Modal
     Modal: Modal
   },
   
@@ -34,7 +36,7 @@ export default {
         this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
       } else {
-        this.showModal = true;
+        this.showModal = !this.showModal;
       }
     },
 
