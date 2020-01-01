@@ -33,7 +33,8 @@ export default {
     addTodo() {
       // 없는 내용 localStorage에 저장되지 않게 예외처리
       if(this.newTodoItem !== "") {
-        this.$emit('addTodoItem', this.newTodoItem);
+        // this.$emit('addTodoItem', this.newTodoItem);
+        this.$store.commit('addOneItem', this.newTodoItem);
         this.clearInput();
       } else {
         this.showModal = !this.showModal;

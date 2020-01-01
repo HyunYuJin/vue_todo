@@ -4,6 +4,6 @@ import { store } from './store/store'
 
 new Vue({
   el: '#app',
-  store: store, // ES6문법: store이라고 써도 된다.
+  store,
   render: h => h(App)
 })
